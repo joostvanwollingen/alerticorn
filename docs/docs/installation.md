@@ -4,7 +4,6 @@ sidebar_position: 2
 
 import Dependencies from './_dependencies.mdx';
 
-
 # Installation
 
 <Dependencies />

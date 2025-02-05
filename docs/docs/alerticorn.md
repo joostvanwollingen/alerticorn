@@ -11,4 +11,4 @@ blocks fail. It supports multiple notification platforms and can be integrated e
 
 ## Getting Started
 
-Hit next below, and follow the [installation](/installation) instructions.
+Hit next below, and follow the [quick start](/quickstart) instructions.

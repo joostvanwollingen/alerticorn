@@ -20,7 +20,7 @@ go to [Extensions](/category/extensions).
 
 ## @Message
 
-This is the main annotation.
+This is the main annotation, used to define the message itself.
 
 | Attribute | Type            | Default Value | Description                             |
 |-----------|-----------------|---------------|-----------------------------------------|
@@ -102,13 +102,13 @@ Annotations at the method level always take precedence over class level annotati
 class MyTest {
 
     fun GeneralTest() {
-        ...
-    } //this sends to general
+        //this sends to general
+    } 
 
     @Message.Channel("another_channel")
     fun SpecificTest() {
-        ...
-    } //this send to another_channel
+        //this send to another_channel
+    } 
 }
 ```
 
@@ -126,62 +126,65 @@ class MyTest {
 
     fun GeneralTest() {
         //this sends to general
-    } 
+    }
 
     @Message.Platform("teams")
     fun SpecificTest() {
         //this sends to another_channel
-    } 
+    }
 }
 ```
 
 ## @Message.Template
 
-In some cases you may feel limited by the possibilities of the [Message](#message) annotation. You can create template functions that construct an AlerticornMessage.
+In some cases you may feel limited by the possibilities of the [Message](#message) annotation. You can create template
+functions that construct an AlerticornMessage.
 
 ```kotlin title="Example of using a template to build a message"
     @Test
-    @Message(title = "Template test")
-    @Message.Template("myFavTemplate")
-    fun testt() {
-        throw Error("something failed")
-    }
+@Message(title = "Template test")
+@Message.Template("myFavTemplate")
+fun testt() {
+    throw Error("something failed")
+}
 
-    companion object {
-        @JvmStatic
-        @BeforeAll
-        fun setup(): Unit {
-            MessageProvider.store("myFavTemplate") { title, throwable ->
-                AlerticornMessage(
-                    title = "The title was $title",
-                    body = "This went wrong: ${throwable?.message}",
-                    details = mapOf("fun" to "times"),
-                    links = mapOf("google" to "https://www.google.com"),
-                    throwable,
-                )
-            }
+companion object {
+    @JvmStatic
+    @BeforeAll
+    fun setup(): Unit {
+        MessageProvider.store("myFavTemplate") { title, throwable ->
+            AlerticornMessage(
+                title = "The title was $title",
+                body = "This went wrong: ${throwable?.message}",
+                details = mapOf("fun" to "times"),
+                links = mapOf("google" to "https://www.google.com"),
+                throwable,
+            )
         }
     }
+}
 ```
 
 ## @Message.Events
 
 If you do not want to send messages for any test event, but only in restricted cases, you can use @Message.Event.
-You can specify one or more of: ANY, EXCEPTION, FAIL, PASS, SKIP, ABORTED, DISABLED.
+You can specify one or more of: `ANY`, `EXCEPTION`, `FAIL`, `PASS`, `SKIP`, `ABORTED`, `DISABLED`.
 
 ```kotlin title="Example to send a message only when the test fails"
     @Test
-    @Message(title = "The test")
-    @Message.Events([Event.FAIL])
-    fun theTest() {
-        assertEquals(true, false)
-    }
+@Message(title = "The test")
+@Message.Events([Event.FAIL])
+fun theTest() {
+    assertEquals(true, false)
+}
 ```
 
 :::tip ANY and EXCEPTION
 
-When using a test framework extension, a failed test is also considered an exception. You will be notified for any failed test when using EXCEPTION.
+When using a test framework extension, a failed test is also considered an exception. You will be notified for any
+failed test when using EXCEPTION.
 
-ANY encompasses all events and is considered equivalent to not using the Message.Events annotation (ANY is the default).
+ANY encompasses all events and is considered equivalent to NOT using the Message.Events annotation (i.e. ANY is the
+default).
 
 :::
