@@ -1,0 +1,56 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+At the very least, Alerticorn needs its core library and a notifier. Optionally (though recommended), you can add a
+dependency for integration with your test framework.
+
+<Tabs>
+<TabItem value="Kotlin" label="build.gradle.kts">
+
+```kotlin
+dependencies {
+    testImplementation("nl.vanwollingen:alerticorn-core:1.0.0") //Always required 
+    testImplementation("nl.vanwollingen:alerticorn-slack-notifier:0.1") //To use Slack
+    testImplementation("nl.vanwollingen:alerticorn-junit:0.1") //Optional: to integrate with JUnit
+}
+```
+
+</TabItem>
+<TabItem value="Groovy" label="build.gradle">
+
+```groovy
+dependencies {
+    testImplementation 'nl.vanwollingen:alerticorn-core:1.0.0'
+    testImplementation 'nl.vanwollingen:alerticorn-slack-notifier:0.1'
+    testImplementation 'nl.vanwollingen:alerticorn-junit:0.1'
+}
+```
+
+</TabItem>
+<TabItem value="Maven" label="pom.xml">
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>nl.vanwollingen</groupId>
+        <artifactId>alerticorn-core</artifactId>
+        <version>1.0.0</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>nl.vanwollingen</groupId>
+        <artifactId>alerticorn-slack-notifier</artifactId>
+        <version>0.1</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>nl.vanwollingen</groupId>
+        <artifactId>alerticorn-junit</artifactId>
+        <version>0.1</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+```
+
+</TabItem>
+</Tabs>
