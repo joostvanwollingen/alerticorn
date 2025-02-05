@@ -30,4 +30,4 @@ blocks fail. It supports multiple notification platforms and can be integrated e
 
 # License
 
-TBD
+MIT, see [License](LICENSE)
