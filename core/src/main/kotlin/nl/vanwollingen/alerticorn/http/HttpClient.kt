@@ -13,6 +13,7 @@ object HttpClient {
 
     private val client = newBuilder().connectTimeout(Duration.ofSeconds(5)).build()
 
+    @JvmStatic
     fun exchange(
         uri: String, method: String, headers: Map<String, List<String>> = emptyMap(), body: String? = null
     ): HttpResponse<String> {
@@ -44,40 +45,47 @@ object HttpClient {
         }
     }
 
+    @JvmStatic
     fun get(
         uri: String,
         headers: Map<String, List<String>> = emptyMap(),
     ) = exchange(uri, "GET", headers)
 
+    @JvmStatic
     fun post(
         uri: String,
         headers: Map<String, List<String>> = emptyMap(),
         body: String? = null,
     ) = exchange(uri, "POST", headers, body)
 
+    @JvmStatic
     fun put(
         uri: String,
         headers: Map<String, List<String>> = emptyMap(),
         body: String? = null,
     ) = exchange(uri, "PUT", headers, body)
 
+    @JvmStatic
     fun patch(
         uri: String,
         headers: Map<String, List<String>> = emptyMap(),
         body: String? = null,
     ) = exchange(uri, "PATCH", headers, body)
 
+    @JvmStatic
     fun delete(
         uri: String,
         headers: Map<String, List<String>> = emptyMap(),
         body: String? = null,
     ) = exchange(uri, "DELETE", headers, body)
 
+    @JvmStatic
     fun head(
         uri: String,
         headers: Map<String, List<String>> = emptyMap(),
     ) = exchange(uri, "HEAD", headers)
 
+    @JvmStatic
     fun options(
         uri: String,
         headers: Map<String, List<String>> = emptyMap(),

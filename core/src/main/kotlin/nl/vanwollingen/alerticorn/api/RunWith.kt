@@ -1,6 +1,8 @@
 package nl.vanwollingen.alerticorn.api
 
 object RunWith {
+
+    @JvmStatic
     fun <T> messageOnException(
         platform: String,
         destination: String,
@@ -17,6 +19,7 @@ object RunWith {
         )
     }.getOrThrow()
 
+    @JvmStatic
     fun <T> message(
         platform: String,
         destination: String,

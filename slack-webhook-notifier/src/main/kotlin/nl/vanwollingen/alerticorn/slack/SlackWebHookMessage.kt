@@ -2,7 +2,7 @@ package nl.vanwollingen.alerticorn.slack
 
 import nl.vanwollingen.alerticorn.api.AlerticornMessage
 
-data class SlackWebHookMessage(
+data class SlackWebHookMessage @JvmOverloads constructor(
     val text: String? = null,
     val iconEmoji: String? = ":unicorn_face:",
     val username: String? = "Alerticorn",
@@ -28,7 +28,7 @@ data class SlackWebHookMessage(
         return sb.toString()
     }
 
-    data class Attachment(
+    data class Attachment @JvmOverloads constructor(
         val fallback: String? = null,
         val pretext: String? = null,
         val color: String? = "info",
@@ -54,7 +54,7 @@ data class SlackWebHookMessage(
             return sb.toString()
         }
 
-        data class Field(val title: String, val value: String, val short: Boolean = false)
+        data class Field @JvmOverloads constructor(val title: String, val value: String, val short: Boolean = false)
     }
 }
 

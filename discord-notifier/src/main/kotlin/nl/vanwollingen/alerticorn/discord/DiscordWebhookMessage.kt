@@ -2,7 +2,7 @@ package nl.vanwollingen.alerticorn.discord
 
 import nl.vanwollingen.alerticorn.api.AlerticornMessage
 
-data class DiscordWebhookMessage(
+data class DiscordWebhookMessage @JvmOverloads constructor(
     val content: String? = null,
     val username: String? = null,
     val avatarUrl: String? = "https://cdn.discordapp.com/avatars/1333554134481371176/1f5c89c8a182902e05fa4c20c7a59271.webp",
@@ -26,7 +26,7 @@ data class DiscordWebhookMessage(
         return sb.toString()
     }
 
-    data class Embed(
+    data class Embed @JvmOverloads constructor(
         val title: String? = null,
         val description: String? = null,
         val url: String? = null,
@@ -54,7 +54,7 @@ data class DiscordWebhookMessage(
             return sb.toString()
         }
 
-        data class Field(val name: String, val value: String, val inline: Boolean = false)
+        data class Field @JvmOverloads constructor(val name: String, val value: String, val inline: Boolean = false)
     }
 }
 

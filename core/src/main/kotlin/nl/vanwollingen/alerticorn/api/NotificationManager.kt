@@ -13,6 +13,7 @@ object NotificationManager {
         ServiceLoader.load(Notifier::class.java).associateBy { it.getPlatform().lowercase() }
     }
 
+    @JvmStatic
     fun notify(
         platform: String? = getDefaultPlatform(),
         message: AlerticornMessage,
@@ -26,19 +27,25 @@ object NotificationManager {
         notifiers[platform.lowercase()]?.send(message, destinationChannel)
     }
 
-
+    @JvmStatic
     fun notify(message: AlerticornMessage, destination: String) =
         notifiers[defaultPlatform.get()]?.send(message, destination)
 
+    @JvmStatic
     fun notify(message: AlerticornMessage) = defaultChannel.get()?.let {
         notifiers[defaultPlatform.get()]?.send(message, it)
     }
 
+    @JvmStatic
     fun getDefaultPlatform(): String? = defaultPlatform.get() ?: notifiers.keys.firstOrNull()
 
+    @JvmStatic
     fun setDefaultPlatform(name: String) =
         notifiers[name]?.run { defaultPlatform.set(name) } ?: throw Error("No notifier available for platform: $name")
 
+    @JvmStatic
     fun setDefaultChannel(name: String) = defaultChannel.set(name)
+
+    @JvmStatic
     fun getNotifier(name: String) = notifiers[name]
 }
