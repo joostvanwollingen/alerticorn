@@ -5,6 +5,10 @@
 **Alerticorn** is a lightweight Kotlin library designed to easily send notifications when annotated test methods or code
 blocks fail. It supports multiple notification platforms and can be integrated easily with your test framework.
 
+## Documentation
+
+Detailed documentation is available on https://joostvanwollingen.github.io/alerticorn/. 
+
 ## Features
 
 - **Pluggable Notification System**: Use one of the popular platform notifiers out of the box, or easily add your
