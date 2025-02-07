@@ -1,8 +1,3 @@
-plugins {
-    kotlin("jvm")
-    id("maven-publish")
-}
-
 dependencies {
     implementation(project(":core"))
     testImplementation("org.jetbrains.kotlin:kotlin-test")

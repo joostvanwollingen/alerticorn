@@ -12,6 +12,7 @@ allprojects {
 subprojects {
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "maven-publish")
+    apply(plugin = "org.jetbrains.kotlin.jvm")
 
     //Because we use junit-pioneer for env variable 'mocking'
     tasks.withType<Test>().all {

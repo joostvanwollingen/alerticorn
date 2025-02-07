@@ -1,8 +1,3 @@
-plugins {
-    kotlin("jvm")
-    id("maven-publish")
-}
-
 dependencies {
     implementation(project(":core"))
     implementation("org.junit.jupiter:junit-jupiter-api:5.11.3")
