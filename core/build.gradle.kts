@@ -28,16 +28,6 @@ tasks.withType<Test>().all {
     jvmArgs("--add-opens","java.base/java.lang=ALL-UNNAMED")
 }
 
-tasks.register<Jar>("sourcesJar") {
-    archiveClassifier.set("sources")
-    from(sourceSets.main.get().allSource)
-}
-
-tasks.register<Jar>("javadocJar") {
-    archiveClassifier.set("javadoc")
-    from(tasks.javadoc)
-}
-
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
@@ -47,7 +37,7 @@ publishing {
 
             from(components["java"])
             artifact(tasks["sourcesJar"])
-            artifact(tasks["javadocJar"])
+            artifact(tasks["dokkaJavadocJar"])
         }
     }
 }

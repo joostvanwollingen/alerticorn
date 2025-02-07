@@ -3,7 +3,6 @@ plugins {
 }
 rootProject.name = "alerticorn"
 include("core")
-include("examples")
 include("slack-webhook-notifier")
 include("junit")
 include("testng")
