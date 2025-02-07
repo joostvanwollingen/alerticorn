@@ -10,24 +10,72 @@ import java.util.*
 import kotlin.jvm.optionals.getOrNull
 import kotlin.reflect.KClass
 
+/**
+ * JUnit 5 extension for integrating Alerticorn notifications with test execution events.
+ *
+ * This extension listens for various test execution events (e.g., test success, failure, aborted) and sends
+ * notifications based on annotations on the test class or method.
+ *
+ * The extension uses the following annotations to control its behavior:
+ * - `@Message`: Defines the title and body of the notification message.
+ * - `@Message.Events`: Specifies the events that trigger notifications (e.g., PASS, FAIL).
+ * - `@Message.Channel`: Specifies the target channel for the notification.
+ * - `@Message.Template`: Specifies the template for generating the notification message.
+ * - `@Message.Platform`: Specifies the platform for sending the notification (e.g., Discord, Slack).
+ *
+ * The extension will attempt to notify when any of the specified events occur, such as a test failure,
+ * success, or exception, and will use the provided message template and channel for the notification.
+ *
+ * @see Message
+ */
 class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
 
+    /**
+     * Called when a test is disabled, triggering a notification if applicable.
+     *
+     * @param context the extension context
+     * @param reason the reason for the test being disabled
+     */
     override fun testDisabled(context: ExtensionContext?, reason: Optional<String>?) {
         context?.let { handleEvent(it, Event.DISABLED, null) }
     }
 
+    /**
+     * Called when a test is aborted, triggering a notification if applicable.
+     *
+     * @param context the extension context
+     * @param cause the cause of the test abortion
+     */
     override fun testAborted(context: ExtensionContext?, cause: Throwable?) {
         context?.let { handleEvent(it, Event.ABORTED, null) }
     }
 
+    /**
+     * Called when a test is successful, triggering a notification if applicable.
+     *
+     * @param context the extension context
+     */
     override fun testSuccessful(context: ExtensionContext) {
         handleEvent(context, Event.PASS, null)
     }
 
+    /**
+     * Called when a test fails, triggering a notification if applicable.
+     *
+     * @param context the extension context
+     * @param cause the cause of the test failure
+     */
     override fun testFailed(context: ExtensionContext?, cause: Throwable?) {
         context?.let { handleEvent(it, Event.FAIL, cause) }
     }
 
+    /**
+     * Handles the test execution exception, sending a notification if the exception event is configured.
+     *
+     * @param context the extension context
+     * @param throwable the thrown exception
+     * @throws Throwable rethrows the original exception
+     */
     @Throws(Throwable::class)
     override fun handleTestExecutionException(context: ExtensionContext, throwable: Throwable) {
         val (messageAnnotation, eventsAnnotation, channelAnnotation, templateAnnotation, platformAnnotation) = getAnnotationDetails(
@@ -56,7 +104,6 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
     }
 
     private fun getAnnotationDetails(context: ExtensionContext): AnnotationDetails {
-
         val clazz = context.testClass.getOrNull()
         val method = context.testMethod.getOrNull()
 
@@ -112,7 +159,12 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
         return AlerticornMessage(title, body, details, links, throwable)
     }
 
-
+    /**
+     * Converts a string array to a map, where each pair of strings is mapped to a key-value entry.
+     *
+     * @param stringArray the string array to be converted
+     * @return a map of key-value pairs
+     */
     fun stringArrayToMap(stringArray: Array<String>): Map<String, String> {
         return stringArray.asSequence().chunked(2).associate { it[0] to it.getOrElse(1) { "" } }
     }
