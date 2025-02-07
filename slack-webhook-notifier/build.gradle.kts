@@ -21,12 +21,6 @@ tasks.test {
     useJUnitPlatform()
 }
 
-//Because we use junit-pioneer for env variable 'mocking'
-tasks.withType<Test>().all {
-    jvmArgs("--add-opens","java.base/java.util=ALL-UNNAMED")
-    jvmArgs("--add-opens","java.base/java.lang=ALL-UNNAMED")
-}
-
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {

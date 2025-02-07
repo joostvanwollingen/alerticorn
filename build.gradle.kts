@@ -8,6 +8,12 @@ subprojects {
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "maven-publish")
 
+    //Because we use junit-pioneer for env variable 'mocking'
+    tasks.withType<Test>().all {
+        jvmArgs("--add-opens","java.base/java.util=ALL-UNNAMED")
+        jvmArgs("--add-opens","java.base/java.lang=ALL-UNNAMED")
+    }
+
     tasks.register<Jar>("sourcesJar") {
         archiveClassifier.set("sources")
         from(sourceSets.main.get().allSource)
