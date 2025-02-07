@@ -2,9 +2,6 @@ plugins {
     kotlin("jvm")
 }
 
-group = "nl.vanwollingen.alerticorn"
-version = "unspecified"
-
 repositories {
     mavenCentral()
 }

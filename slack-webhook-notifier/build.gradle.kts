@@ -3,9 +3,6 @@ plugins {
     id("maven-publish")
 }
 
-group = "nl.vanwollingen.alerticorn"
-version = "unspecified"
-
 repositories {
     mavenCentral()
 }
@@ -17,16 +14,12 @@ dependencies {
     testImplementation("org.junit-pioneer:junit-pioneer:2.3.0")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
-
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = "nl.vanwollingen.alerticorn"
             artifactId = "alerticorn-slack-notifier"
-            version = "0.1"
+            version = project.version.toString()
 
             from(components["java"])
 

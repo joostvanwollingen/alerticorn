@@ -3,9 +3,6 @@ plugins {
     id("maven-publish")
 }
 
-group = "nl.vanwollingen.alerticorn"
-version = "unspecified"
-
 repositories {
     mavenCentral()
 }
@@ -17,9 +14,6 @@ dependencies {
     testImplementation("org.junit-pioneer:junit-pioneer:2.3.0")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
 kotlin {
     jvmToolchain(21)
 }
@@ -29,7 +23,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "nl.vanwollingen.alerticorn"
             artifactId = "alerticorn-discord-notifier"
-            version = "0.1"
+            version = project.version.toString()
 
             from(components["java"])
 

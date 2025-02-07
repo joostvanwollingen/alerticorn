@@ -4,6 +4,11 @@ plugins {
     id("maven-publish")
 }
 
+allprojects {
+    group = "nl.vanwollingen.alerticorn"
+    version = "0.1"
+}
+
 subprojects {
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "maven-publish")
