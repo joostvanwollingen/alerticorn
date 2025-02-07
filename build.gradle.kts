@@ -29,6 +29,10 @@ subprojects {
         from(tasks.dokkaJavadoc.flatMap { it.outputDirectory })
         archiveClassifier.set("javadoc")
     }
+
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
+    }
 }
 
 repositories {
@@ -37,8 +41,4 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-}
-
-tasks.test { // See 4️⃣
-    useJUnitPlatform()
 }
