@@ -1,9 +1,6 @@
 package nl.vanwollingen.alerticorn.discord
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkObject
-import io.mockk.verify
+import io.mockk.*
 import nl.vanwollingen.alerticorn.api.AlerticornMessage
 import nl.vanwollingen.alerticorn.api.MessageFailedToSendException
 import nl.vanwollingen.alerticorn.http.HttpClient
@@ -25,7 +22,7 @@ class DiscordNotifierTest {
         val (acMessage, json) = buildMessageBodyFor("Hello World!")
         val uri = "https://discord.com/webhook"
 
-        mockkObject(HttpClient) {
+        mockkStatic(HttpClient::class) {
             every { HttpClient.post(uri = uri, headers = headers, body = json) } returns response
 
             val discordNotifier = DiscordNotifier()
@@ -45,7 +42,7 @@ class DiscordNotifierTest {
         val (acMessage, json) = buildMessageBodyFor("Hello World!")
         val uri = "https://discord.com/webhook"
 
-        mockkObject(HttpClient) {
+        mockkStatic(HttpClient::class) {
             every { HttpClient.post(uri = uri, headers = headers, body = json) } returns response
 
             val discordNotifier = DiscordNotifier()
@@ -65,7 +62,7 @@ class DiscordNotifierTest {
         val (acMessage, json) = buildMessageBodyFor("Hello World!")
         val uri = "https://discord.com/webhook"
 
-        mockkObject(HttpClient) {
+        mockkStatic(HttpClient::class) {
             every {
                 HttpClient.post(
                     uri = uri, headers = headers, body = json

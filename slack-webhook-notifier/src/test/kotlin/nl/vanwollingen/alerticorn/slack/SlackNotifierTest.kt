@@ -1,9 +1,6 @@
 package nl.vanwollingen.alerticorn.slack
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkObject
-import io.mockk.verify
+import io.mockk.*
 import nl.vanwollingen.alerticorn.api.AlerticornMessage
 import nl.vanwollingen.alerticorn.api.MessageFailedToSendException
 import nl.vanwollingen.alerticorn.http.HttpClient
@@ -21,7 +18,7 @@ class SlackNotifierTest {
         val (acMessage, json) = buildMessageBodyFor("Hello World!")
         val url = "https://slack.com/webhook"
 
-        mockkObject(HttpClient) {
+        mockkStatic(HttpClient::class) {
             every { HttpClient.post(url, body = json) } returns response
 
             val slackNotifier = SlackNotifier()
@@ -37,7 +34,7 @@ class SlackNotifierTest {
         val (acMessage, json) = buildMessageBodyFor("Hello World!")
         val url = "https://slack.com/webhook"
 
-        mockkObject(HttpClient) {
+        mockkStatic(HttpClient::class) {
             every {
                 HttpClient.post(
                     url,
@@ -57,7 +54,7 @@ class SlackNotifierTest {
         val (acMessage, json) = buildMessageBodyFor("Hello World!")
         val url = "https://slack.com/webhook"
 
-        mockkObject(HttpClient) {
+        mockkStatic(HttpClient::class) {
             every {
                 HttpClient.post(
                     url,

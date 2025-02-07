@@ -25,7 +25,7 @@ class MessageExtensionTest {
     fun setUp() {
         handler = spyk<MessageExtension>(recordPrivateCalls = true)
         mockkStatic(AnnotationSupport::class)
-        mockkObject(NotificationManager)
+        mockkStatic(NotificationManager::class)
     }
 
     @Test
