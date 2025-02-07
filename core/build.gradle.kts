@@ -33,6 +33,11 @@ tasks.register<Jar>("sourcesJar") {
     from(sourceSets.main.get().allSource)
 }
 
+tasks.register<Jar>("javadocJar") {
+    archiveClassifier.set("javadoc")
+    from(tasks.javadoc)
+}
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
@@ -42,6 +47,7 @@ publishing {
 
             from(components["java"])
             artifact(tasks["sourcesJar"])
+            artifact(tasks["javadocJar"])
         }
     }
 }
