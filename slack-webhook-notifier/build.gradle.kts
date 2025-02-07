@@ -3,10 +3,6 @@ plugins {
     id("maven-publish")
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation(project(":core"))
     testImplementation("org.jetbrains.kotlin:kotlin-test")

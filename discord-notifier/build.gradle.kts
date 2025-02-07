@@ -3,19 +3,11 @@ plugins {
     id("maven-publish")
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation(project(":core"))
     testImplementation(kotlin("test"))
     testImplementation("io.mockk:mockk:1.13.13")
     testImplementation("org.junit-pioneer:junit-pioneer:2.3.0")
-}
-
-kotlin {
-    jvmToolchain(21)
 }
 
 publishing {

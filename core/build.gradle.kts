@@ -3,12 +3,6 @@ plugins {
     id("maven-publish")
 }
 
-
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("io.mockk:mockk:1.13.13")

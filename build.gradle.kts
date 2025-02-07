@@ -33,12 +33,8 @@ subprojects {
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()
     }
-}
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation(kotlin("test"))
+    repositories {
+        mavenCentral()
+    }
 }
