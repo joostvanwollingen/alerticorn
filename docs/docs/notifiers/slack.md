@@ -16,7 +16,7 @@ Follow the instructions on the Slack website to create an [Incoming Webhook](htt
 
 ```kotlin
 dependencies {
-    testImplementation("nl.vanwollingen:alerticorn-slack-notifier:0.1") //To use Slack
+    testImplementation("nl.vanwollingen.alerticorn:alerticorn-slack-notifier:0.1") //To use Slack
 }
 ```
 
@@ -25,7 +25,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    testImplementation 'nl.vanwollingen:alerticorn-slack-notifier:0.1'
+    testImplementation 'nl.vanwollingen.alerticorn:alerticorn-slack-notifier:0.1'
 }
 ```
 

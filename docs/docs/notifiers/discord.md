@@ -17,7 +17,7 @@ a [webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Web
 
 ```kotlin
 dependencies {
-    testImplementation("nl.vanwollingen:alerticorn-discord-notifier:0.1") //To use Discord
+    testImplementation("nl.vanwollingen.alerticorn:alerticorn-discord-notifier:0.1") //To use Discord
 }
 ```
 
@@ -26,7 +26,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    testImplementation 'nl.vanwollingen:alerticorn-discord-notifier:0.1'
+    testImplementation 'nl.vanwollingen.alerticorn:alerticorn-discord-notifier:0.1'
 }
 ```
 
