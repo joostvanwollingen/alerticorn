@@ -33,9 +33,8 @@ dependencies {
 <TabItem value="Maven" label="pom.xml">
 
 ```xml
-
 <dependency>
-    <groupId>nl.vanwollingen</groupId>
+    <groupId>nl.vanwollingen.alerticorn</groupId>
     <artifactId>alerticorn-slack-notifier</artifactId>
     <version>0.1</version>
     <scope>test</scope>
