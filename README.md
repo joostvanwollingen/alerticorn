@@ -14,7 +14,7 @@ Detailed documentation is available on https://joostvanwollingen.github.io/alert
 - **Pluggable Notification System**: Use one of the popular platform notifiers out of the box, or easily add your
   notification platforms using the `Notifier` interface.
 - **Customizable Message Formats**: Build dynamic messages using MessageBuilders
-- **Small footprint**: Alerticorn has little dependencies, and supplies a lightweight HTTP client.
+- **Small footprint**: Alerticorn has no dependencies
 - **JUnit Integration**: Automatically send notifications when tests fail using a JUnit extension.
 - **TestNG Integration**: Automatically send notifications when tests fail using TestNG listeners. (soon)
 - **Kotest Integration**: Automatically send notifications when tests fail using Kotest listeners. (soon)
@@ -22,7 +22,7 @@ Detailed documentation is available on https://joostvanwollingen.github.io/alert
 ## Notification Platform Support
 
 - ✅ Slack (webhooks)
-- 🚧 Microsoft Teams
+- ✅ Microsoft Teams
 - ✅ Discord
 - 🚧 Custom APIs
 
