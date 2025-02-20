@@ -24,6 +24,7 @@ Detailed documentation is available on https://joostvanwollingen.github.io/alert
 - ✅ Slack (webhooks)
 - ✅ Microsoft Teams
 - ✅ Discord
+- ✅ Mattermost (using Slack notifier)
 - 🚧 Custom APIs
 
 ## Test Framework Support
