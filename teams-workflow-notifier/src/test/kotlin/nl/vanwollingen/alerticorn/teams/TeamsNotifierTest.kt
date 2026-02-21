@@ -17,14 +17,15 @@ class TeamsNotifierTest {
 
         val (acMessage, json) = buildMessageBodyFor("Hello World!")
         val url = "https://1234jkl.webhook.office.com"
+        val headers = mapOf("Content-Type" to listOf("application/json"))
 
         mockkStatic(HttpClient::class) {
-            every { HttpClient.post(url, body = json) } returns response
+            every { HttpClient.post(url, headers = headers, body = json) } returns response
 
             val teamsNotifier = TeamsNotifier()
             teamsNotifier.send(acMessage, url)
 
-            verify(exactly = 1) { HttpClient.post(url, body = json) }
+            verify(exactly = 1) { HttpClient.post(url, headers = headers, body = json) }
         }
     }
 
@@ -33,11 +34,13 @@ class TeamsNotifierTest {
         val response: HttpResponse<String> = mockResponse(403)
         val (acMessage, json) = buildMessageBodyFor("Hello World!")
         val url = "https://1234jkl.webhook.office.com"
+        val headers = mapOf("Content-Type" to listOf("application/json"))
 
         mockkStatic(HttpClient::class) {
             every {
                 HttpClient.post(
                     url,
+                    headers = headers,
                     body = json
                 )
             } returns response
@@ -45,7 +48,7 @@ class TeamsNotifierTest {
             val teamsNotifier = TeamsNotifier()
             assertThrows<MessageFailedToSendException> { teamsNotifier.send(acMessage, url) }
 
-            verify(exactly = 1) { HttpClient.post(url, body = json) }
+            verify(exactly = 1) { HttpClient.post(url, headers = headers, body = json) }
         }
     }
 
@@ -53,11 +56,13 @@ class TeamsNotifierTest {
     fun `it should throw exceptions on failure to send`() {
         val (acMessage, json) = buildMessageBodyFor("Hello World!")
         val url = "https://1234jkl.webhook.office.com"
+        val headers = mapOf("Content-Type" to listOf("application/json"))
 
         mockkStatic(HttpClient::class) {
             every {
                 HttpClient.post(
                     url,
+                    headers = headers,
                     body = json
                 )
             } throws IOException("err")
@@ -65,7 +70,7 @@ class TeamsNotifierTest {
             val teamsNotifier = TeamsNotifier()
             assertThrows<MessageFailedToSendException> { teamsNotifier.send(acMessage, url) }
 
-            verify(exactly = 1) { HttpClient.post(url, body = json) }
+            verify(exactly = 1) { HttpClient.post(url, headers = headers, body = json) }
         }
     }
 
