@@ -107,8 +107,12 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
         val clazz = context.testClass.getOrNull()
         val method = context.testMethod.getOrNull()
 
-        val message = getAnnotation(method, clazz, Message::class)
-        val events = getAnnotation(method, clazz, Message.Events::class)
+        // Resolve @Message.Events from the same scope that provided @Message,
+        // so a class-level filter (e.g. SUITE_COMPLETE) doesn't bleed into method-level messages.
+        val messageScope = if (AnnotationSupport.findAnnotation(method, Message::class.java).isPresent) method else clazz
+        val message = AnnotationSupport.findAnnotation(messageScope, Message::class.java).getOrNull()
+        val events = AnnotationSupport.findAnnotation(messageScope, Message.Events::class.java).getOrNull()
+
         val channel = getAnnotation(method, clazz, Message.Channel::class)
         val template = getAnnotation(method, clazz, Message.Template::class)
         val platform = getAnnotation(method, clazz, Message.Platform::class)

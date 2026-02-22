@@ -82,8 +82,12 @@ class AlerticornExtension : AfterTestListener, TestCaseExtension {
     internal fun getAnnotationDetails(
         primary: AnnotatedElement?, secondary: AnnotatedElement?
     ): AnnotationDetails {
-        val message = getAnnotation<Message>(primary, secondary)
-        val events = getAnnotation<Message.Events>(primary, secondary)
+        // Resolve @Message.Events from the same scope that provided @Message,
+        // so a class-level filter (e.g. SUITE_COMPLETE) doesn't bleed into method-level messages.
+        val messageScope = if (findAnnotation<Message>(primary) != null) primary else secondary
+        val message = findAnnotation<Message>(messageScope)
+        val events = findAnnotation<Message.Events>(messageScope)
+
         val channel = getAnnotation<Message.Channel>(primary, secondary)
         val template = getAnnotation<Message.Template>(primary, secondary)
         val platform = getAnnotation<Message.Platform>(primary, secondary)
@@ -102,8 +106,14 @@ class AlerticornExtension : AfterTestListener, TestCaseExtension {
     private inline fun <reified T : Annotation> getAnnotation(
         primary: AnnotatedElement?, secondary: AnnotatedElement?
     ): T? {
-        return primary?.getAnnotation(T::class.java)
-            ?: secondary?.getAnnotation(T::class.java)
+        return findAnnotation<T>(primary)
+            ?: findAnnotation<T>(secondary)
+    }
+
+    private inline fun <reified T : Annotation> findAnnotation(element: AnnotatedElement?): T? {
+        if (element == null) return null
+        element.getAnnotation(T::class.java)?.let { return it }
+        return element.annotations.firstNotNullOfOrNull { it.annotationClass.java.getAnnotation(T::class.java) }
     }
 
     internal fun shouldNotify(eventsAnnotation: Message.Events?, event: Event): Boolean {
