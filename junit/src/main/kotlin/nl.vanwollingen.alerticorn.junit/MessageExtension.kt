@@ -166,6 +166,6 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
      * @return a map of key-value pairs
      */
     fun stringArrayToMap(stringArray: Array<String>): Map<String, String> {
-        return stringArray.asSequence().chunked(2).associate { it[0] to it.getOrElse(1) { "" } }
+        return nl.vanwollingen.alerticorn.api.stringArrayToMap(stringArray)
     }
 }

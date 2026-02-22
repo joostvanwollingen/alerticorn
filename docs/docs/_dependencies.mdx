@@ -12,6 +12,8 @@ dependencies {
     testImplementation("nl.vanwollingen.alerticorn:alerticorn-core:1.0.0") //Always required
     testImplementation("nl.vanwollingen.alerticorn:alerticorn-slack-notifier:0.1") //To use Slack
     testImplementation("nl.vanwollingen.alerticorn:alerticorn-junit:0.1") //Optional: to integrate with JUnit
+    testImplementation("nl.vanwollingen.alerticorn:alerticorn-testng:0.1") //Optional: to integrate with TestNG
+    testImplementation("nl.vanwollingen.alerticorn:alerticorn-kotest:0.1") //Optional: to integrate with Kotest
 }
 ```
 
@@ -23,6 +25,8 @@ dependencies {
     testImplementation 'nl.vanwollingen.alerticorn:alerticorn-core:1.0.0'
     testImplementation 'nl.vanwollingen.alerticorn:alerticorn-slack-notifier:0.1'
     testImplementation 'nl.vanwollingen.alerticorn:alerticorn-junit:0.1'
+    testImplementation 'nl.vanwollingen.alerticorn:alerticorn-testng:0.1'
+    testImplementation 'nl.vanwollingen.alerticorn:alerticorn-kotest:0.1'
 }
 ```
 
@@ -43,9 +47,22 @@ dependencies {
         <version>0.1</version>
         <scope>test</scope>
     </dependency>
+    <!-- Choose one of the following based on your test framework -->
     <dependency>
         <groupId>nl.vanwollingen</groupId>
         <artifactId>alerticorn-junit</artifactId>
+        <version>0.1</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>nl.vanwollingen</groupId>
+        <artifactId>alerticorn-testng</artifactId>
+        <version>0.1</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>nl.vanwollingen</groupId>
+        <artifactId>alerticorn-kotest</artifactId>
         <version>0.1</version>
         <scope>test</scope>
     </dependency>

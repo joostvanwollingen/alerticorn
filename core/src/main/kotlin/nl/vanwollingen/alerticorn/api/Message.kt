@@ -93,6 +93,9 @@ enum class Event {
     /** Represents a disabled test. */
     DISABLED,
 
-//    SUITE_COMPLETE, // TODO: Align with test framework naming (BEFORE_ALL/AFTER_ALL)
-//    SUITE_START,
+    /** Represents the start of a test suite or project. */
+    SUITE_START,
+
+    /** Represents the completion of a test suite or project. */
+    SUITE_COMPLETE,
 }
