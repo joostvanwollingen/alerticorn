@@ -136,8 +136,8 @@ fun AlerticornMessage.toSlackWebHookMessage(): SlackWebHookMessage {
             color = "danger",
             fields = listOf(
                 SlackWebHookMessage.Attachment.Field(
-                    throwable?.message.toString(),
-                    throwable?.cause.toString()
+                    throwable?.message ?: "",
+                    throwable?.cause?.toString() ?: ""
                 )
             )
         )

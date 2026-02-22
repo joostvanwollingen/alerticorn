@@ -11,7 +11,7 @@ import kotlin.jvm.optionals.getOrNull
 import kotlin.reflect.KClass
 
 /**
- * JUnit 5 extension for integrating Alerticorn notifications with test execution events.
+ * JUnit 6 extension for integrating Alerticorn notifications with test execution events.
  *
  * This extension listens for various test execution events (e.g., test success, failure, aborted) and sends
  * notifications based on annotations on the test class or method.
@@ -36,8 +36,8 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
      * @param context the extension context
      * @param reason the reason for the test being disabled
      */
-    override fun testDisabled(context: ExtensionContext?, reason: Optional<String>?) {
-        context?.let { handleEvent(it, Event.DISABLED, null) }
+    override fun testDisabled(context: ExtensionContext, reason: Optional<String>) {
+        handleEvent(context, Event.DISABLED, null)
     }
 
     /**
@@ -46,8 +46,8 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
      * @param context the extension context
      * @param cause the cause of the test abortion
      */
-    override fun testAborted(context: ExtensionContext?, cause: Throwable?) {
-        context?.let { handleEvent(it, Event.ABORTED, null) }
+    override fun testAborted(context: ExtensionContext, cause: Throwable?) {
+        handleEvent(context, Event.ABORTED, null)
     }
 
     /**
@@ -65,8 +65,8 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
      * @param context the extension context
      * @param cause the cause of the test failure
      */
-    override fun testFailed(context: ExtensionContext?, cause: Throwable?) {
-        context?.let { handleEvent(it, Event.FAIL, cause) }
+    override fun testFailed(context: ExtensionContext, cause: Throwable?) {
+        handleEvent(context, Event.FAIL, cause)
     }
 
     /**
@@ -107,8 +107,12 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
         val clazz = context.testClass.getOrNull()
         val method = context.testMethod.getOrNull()
 
-        val message = getAnnotation(method, clazz, Message::class)
-        val events = getAnnotation(method, clazz, Message.Events::class)
+        // Resolve @Message.Events from the same scope that provided @Message,
+        // so a class-level filter (e.g. SUITE_COMPLETE) doesn't bleed into method-level messages.
+        val messageScope = if (AnnotationSupport.findAnnotation(method, Message::class.java).isPresent) method else clazz
+        val message = AnnotationSupport.findAnnotation(messageScope, Message::class.java).getOrNull()
+        val events = AnnotationSupport.findAnnotation(messageScope, Message.Events::class.java).getOrNull()
+
         val channel = getAnnotation(method, clazz, Message.Channel::class)
         val template = getAnnotation(method, clazz, Message.Template::class)
         val platform = getAnnotation(method, clazz, Message.Platform::class)
@@ -166,6 +170,6 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
      * @return a map of key-value pairs
      */
     fun stringArrayToMap(stringArray: Array<String>): Map<String, String> {
-        return stringArray.asSequence().chunked(2).associate { it[0] to it.getOrElse(1) { "" } }
+        return nl.vanwollingen.alerticorn.api.stringArrayToMap(stringArray)
     }
 }

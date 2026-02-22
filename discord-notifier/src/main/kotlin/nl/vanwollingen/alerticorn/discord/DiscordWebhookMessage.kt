@@ -135,9 +135,9 @@ fun AlerticornMessage.toDiscordWebhookMessage(): DiscordWebhookMessage {
         DiscordWebhookMessage.Embed(
             title = "Exception", fields = listOf(
                 DiscordWebhookMessage.Embed.Field(
-                    "Message", throwable?.message.toString()
+                    "Message", throwable?.message ?: ""
                 ), DiscordWebhookMessage.Embed.Field(
-                    "Cause", throwable?.cause.toString()
+                    "Cause", throwable?.cause?.toString() ?: ""
                 )
             )
         )

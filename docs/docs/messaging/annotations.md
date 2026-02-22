@@ -168,7 +168,7 @@ companion object {
 ## @Message.Events
 
 If you do not want to send messages for any test event, but only in restricted cases, you can use @Message.Event.
-You can specify one or more of: `ANY`, `EXCEPTION`, `FAIL`, `PASS`, `SKIP`, `ABORTED`, `DISABLED`.
+You can specify one or more of: `ANY`, `EXCEPTION`, `FAIL`, `PASS`, `SKIP`, `ABORTED`, `DISABLED`, `SUITE_START`, `SUITE_COMPLETE`.
 
 ```kotlin title="Example to send a message only when the test fails"
     @Test
@@ -188,3 +188,10 @@ ANY encompasses all events and is considered equivalent to NOT using the Message
 default).
 
 :::
+
+### Suite events
+
+`SUITE_START` and `SUITE_COMPLETE` are only supported by the TestNG and Kotest extensions for suite/project-level
+notifications. When a suite completes, the notification message is automatically enriched with summary counts
+(total, passed, failed, etc.). See the [TestNG](/extensions/testng) and [Kotest](/extensions/kotest) extension
+docs for details.
