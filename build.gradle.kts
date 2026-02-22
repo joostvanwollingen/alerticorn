@@ -5,7 +5,8 @@ import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
     kotlin("jvm") version "2.2.0"
-    id("org.jetbrains.dokka") version "2.0.0"
+    id("org.jetbrains.dokka") version "2.1.0"
+    id("org.jetbrains.dokka-javadoc") version "2.1.0"
     id("com.vanniktech.maven.publish") version "0.30.0" apply false
 }
 
@@ -16,6 +17,7 @@ allprojects {
 
 subprojects {
     apply(plugin = "org.jetbrains.dokka")
+    apply(plugin = "org.jetbrains.dokka-javadoc")
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "com.vanniktech.maven.publish")
 
@@ -34,7 +36,7 @@ subprojects {
     }
 
     configure<MavenPublishBaseExtension> {
-        configure(KotlinJvm(javadocJar = JavadocJar.Dokka("dokkaJavadoc")))
+        configure(KotlinJvm(javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationJavadoc")))
         publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
         signAllPublications()
 
