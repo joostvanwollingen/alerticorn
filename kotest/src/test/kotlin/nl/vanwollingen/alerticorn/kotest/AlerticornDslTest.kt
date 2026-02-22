@@ -2,7 +2,6 @@ package nl.vanwollingen.alerticorn.kotest
 
 import nl.vanwollingen.alerticorn.api.Event
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 import kotlin.test.assertIs
 
 class AlerticornDslTest {

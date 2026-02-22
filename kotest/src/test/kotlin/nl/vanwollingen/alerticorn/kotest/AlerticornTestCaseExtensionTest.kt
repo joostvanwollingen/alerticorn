@@ -167,7 +167,7 @@ class AlerticornTestCaseExtensionTest {
     }
 
     @Test
-    fun `MessageFailedToSendException is caught`() = runBlocking {
+    fun `MessageFailedToSendException is caught`(): Unit = runBlocking {
         every {
             NotificationManager.notify(platform = any(), message = any(), destination = any())
         } throws MessageFailedToSendException("send failed")
