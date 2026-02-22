@@ -88,16 +88,33 @@ const config = {
             items: [
               {
                 label: "Installation",
-                to: "#TODO",
+                to: "installation",
               },
               {
                 label: "Configuration",
-                to: "#TODO",
+                to: "configuration",
               },
             ],
           },
           {
-            title: "Plugins",
+            title: "Test Frameworks",
+            items: [
+              {
+                label: "JUnit",
+                href: "/extensions/junit",
+              },
+              {
+                label: "Kotest",
+                href: "/extensions/kotest",
+              },
+              {
+                label: "TestNG",
+                href: "/extensions/testng",
+              },
+            ]
+          },
+          {
+            title: "Notifiers",
             items: [
               {
                 label: "Slack",
@@ -108,9 +125,13 @@ const config = {
                 href: "/notifiers/discord",
               },
               {
-                label: "JUnit",
-                href: "/extensions/junit",
+                label: "Teams",
+                href: "/notifiers/teams",
               },
+              {
+                label: "Mattermost",
+                href: "/notifiers/mattermost",
+              }
             ],
           },
           {
