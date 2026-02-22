@@ -6,9 +6,9 @@ This directory contains example projects demonstrating how to integrate Alertico
 
 | Directory | Build Tool | Test Framework | Notifier | Language |
 |-----------|------------|----------------|----------|----------|
-| [gradle-junit-slack](gradle-junit-slack/) | Gradle (Kotlin DSL) | JUnit 5 | Slack | Kotlin |
+| [gradle-junit-slack](gradle-junit-slack/) | Gradle (Kotlin DSL) | JUnit 6 | Slack | Kotlin |
 | [gradle-kotest-teams](gradle-kotest-teams/) | Gradle (Kotlin DSL) | Kotest | Teams | Kotlin |
-| [maven-junit-discord](maven-junit-discord/) | Maven | JUnit 5 | Discord | Java |
+| [maven-junit-discord](maven-junit-discord/) | Maven | JUnit 6 | Discord | Java |
 | [maven-testng-slack](maven-testng-slack/) | Maven | TestNG | Slack | Java |
 
 ## Prerequisites

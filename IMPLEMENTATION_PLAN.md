@@ -138,7 +138,7 @@ stack trace, never interfere with test outcomes.
 
 **File:** `testng/src/test/kotlin/nl/vanwollingen/alerticorn/testng/MessageListenerTest.kt`
 
-Tests use **JUnit 5** with MockK.
+Tests use **JUnit 6** with MockK.
 
 - [x] Test: no notification when `@Message` annotation is absent
 - [x] Test: `onTestSuccess` sends notification when `Event.PASS` is in events
@@ -263,7 +263,7 @@ used convenience.
 
 ### 3.7 Tests for Kotest module
 
-Tests use **JUnit 5** with MockK.
+Tests use **JUnit 6** with MockK.
 
 **`AlerticornExtensionTest.kt`** (12 tests):
 - [x] No notification when no `@Message` annotation on spec class
@@ -325,7 +325,7 @@ Tests use **JUnit 5** with MockK.
 
 | Framework | When EXCEPTION fires | When FAIL fires | Dual notification? |
 |-----------|---------------------|----------------|-------------------|
-| JUnit 5 | In `handleTestExecutionException` (before outcome) | In `testFailed` (after outcome) | Yes -- `@Message.Events([EXCEPTION, FAIL])` sends TWO notifications |
+| JUnit 6 | In `handleTestExecutionException` (before outcome) | In `testFailed` (after outcome) | Yes -- `@Message.Events([EXCEPTION, FAIL])` sends TWO notifications |
 | TestNG | In `onTestFailure` (after outcome, if throwable present) | In `onTestFailure` (after outcome) | No -- checked together, sends ONE notification |
 | Kotest | In `TestCaseExtension.intercept` (during execution) | In `AfterTestListener.afterTest` (after outcome) | Yes -- same dual-hook model as JUnit |
 
@@ -333,7 +333,7 @@ Tests use **JUnit 5** with MockK.
 
 | Framework | Method-level `@Message` | Class-level `@Message` | DSL config |
 |-----------|------------------------|----------------------|------------|
-| JUnit 5 | Yes (primary) | Yes (fallback) | N/A |
+| JUnit 6 | Yes (primary) | Yes (fallback) | N/A |
 | TestNG | Yes (primary) | Yes (fallback) | N/A |
 | Kotest (AnnotationSpec) | Yes (primary) | Yes (fallback) | N/A |
 | Kotest (other specs) | N/A (tests are lambdas) | Yes (primary) | `.config(extensions=...)` or `alerticornTest()` |
@@ -347,7 +347,7 @@ Tests use **JUnit 5** with MockK.
 
 ### `Event.DISABLED` vs `Event.SKIP`
 
-- JUnit 5: `DISABLED` = `@Disabled` annotation; `SKIP` is not used by JUnit (but is in the enum)
+- JUnit 6: `DISABLED` = `@Disabled` annotation; `SKIP` is not used by JUnit (but is in the enum)
 - TestNG: `SKIP` = `@Test(enabled=false)`, dependency failure, or `throw SkipException`; `DISABLED` is not used
 - Kotest: `Ignored` = `xtest`, `config(enabled=false)`, etc.; both `SKIP` and `DISABLED` are checked
 

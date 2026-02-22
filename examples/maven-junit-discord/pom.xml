@@ -32,7 +32,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit 5 integration -->
+        <!-- JUnit 6 integration -->
         <dependency>
             <groupId>nl.vanwollingen.alerticorn</groupId>
             <artifactId>alerticorn-junit</artifactId>
@@ -40,11 +40,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit 5 -->
+        <!-- JUnit 6 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.11.3</version>
+            <version>6.0.3</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

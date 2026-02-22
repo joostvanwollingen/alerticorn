@@ -29,7 +29,7 @@ Detailed documentation is available on https://joostvanwollingen.github.io/alert
 
 ## Test Framework Support
 
-- ✅ JUnit 5
+- ✅ JUnit 6
 - ✅ TestNG
 - ✅ Kotest
 

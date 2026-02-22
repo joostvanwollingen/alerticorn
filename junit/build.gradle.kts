@@ -1,6 +1,6 @@
 dependencies {
     implementation(project(":core"))
-    implementation("org.junit.jupiter:junit-jupiter-api:5.11.3")
+    implementation("org.junit.jupiter:junit-jupiter-api:6.0.3")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("io.mockk:mockk:1.13.13")
     testImplementation("org.junit-pioneer:junit-pioneer:2.3.0")
@@ -20,7 +20,7 @@ publishing {
 
             pom {
                 name = "Alerticorn JUnit Extension"
-                description = "An extension for JUnit 5 for use with Alerticorn"
+                description = "An extension for JUnit 6 for use with Alerticorn"
                 url = "https://joostvanwollingen.github.io/alerticorn/"
                 licenses {
                     license {

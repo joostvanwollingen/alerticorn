@@ -29,21 +29,6 @@ class MessageExtensionTest {
     }
 
     @Test
-    fun `does not notify if no context is passed`() {
-        handler.testFailed(context = null, null)
-        handler.testDisabled(context = null, reason = Optional.of("Disabled"))
-        handler.testAborted(context = null, null)
-
-        verify(exactly = 0) {
-            NotificationManager.notify(
-                platform = any(),
-                message = any(),
-                destination = any(),
-            )
-        }
-    }
-
-    @Test
     fun `does not notify if no message title is present`() {
         val (context, _) = setupAnnotationMocks(false)
 

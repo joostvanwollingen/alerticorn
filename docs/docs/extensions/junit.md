@@ -6,8 +6,8 @@ methods.
 ## Registering the extension with JUnit
 
 In order to integrate Alerticorn with JUnit it must
-be [registered](https://junit.org/junit5/docs/current/user-guide/#extensions-registration) as
-an [JUnit Extension](https://junit.org/junit5/docs/current/user-guide/#extensions).
+be [registered](https://docs.junit.org/current/user-guide/extensions/registering-extensions.html) as
+a [JUnit Extension](https://docs.junit.org/current/user-guide/extensions/overview.html).
 
 The simplest method is to use the `@ExtendWith`-annotation from JUnit and include Alerticorn's `MessageExtension`-class
 there.
@@ -27,4 +27,4 @@ class MyTest {
 
 - If you have a class that all your tests derived from you can add the `@ExtendWith`-annotation there
 - Alternatively, you can explore JUnit's mechanisms
-  to [register extensions automatically.](https://junit.org/junit5/docs/current/user-guide/#extensions-registration)
+  to [register extensions automatically.](https://docs.junit.org/current/user-guide/extensions/registering-extensions.html)

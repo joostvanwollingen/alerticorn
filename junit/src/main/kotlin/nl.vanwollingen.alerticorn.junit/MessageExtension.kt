@@ -11,7 +11,7 @@ import kotlin.jvm.optionals.getOrNull
 import kotlin.reflect.KClass
 
 /**
- * JUnit 5 extension for integrating Alerticorn notifications with test execution events.
+ * JUnit 6 extension for integrating Alerticorn notifications with test execution events.
  *
  * This extension listens for various test execution events (e.g., test success, failure, aborted) and sends
  * notifications based on annotations on the test class or method.
@@ -36,8 +36,8 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
      * @param context the extension context
      * @param reason the reason for the test being disabled
      */
-    override fun testDisabled(context: ExtensionContext?, reason: Optional<String>?) {
-        context?.let { handleEvent(it, Event.DISABLED, null) }
+    override fun testDisabled(context: ExtensionContext, reason: Optional<String>) {
+        handleEvent(context, Event.DISABLED, null)
     }
 
     /**
@@ -46,8 +46,8 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
      * @param context the extension context
      * @param cause the cause of the test abortion
      */
-    override fun testAborted(context: ExtensionContext?, cause: Throwable?) {
-        context?.let { handleEvent(it, Event.ABORTED, null) }
+    override fun testAborted(context: ExtensionContext, cause: Throwable?) {
+        handleEvent(context, Event.ABORTED, null)
     }
 
     /**
@@ -65,8 +65,8 @@ class MessageExtension : TestExecutionExceptionHandler, TestWatcher {
      * @param context the extension context
      * @param cause the cause of the test failure
      */
-    override fun testFailed(context: ExtensionContext?, cause: Throwable?) {
-        context?.let { handleEvent(it, Event.FAIL, cause) }
+    override fun testFailed(context: ExtensionContext, cause: Throwable?) {
+        handleEvent(context, Event.FAIL, cause)
     }
 
     /**
