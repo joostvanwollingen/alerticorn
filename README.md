@@ -16,8 +16,8 @@ Detailed documentation is available on https://joostvanwollingen.github.io/alert
 - **Customizable Message Formats**: Build dynamic messages using MessageBuilders
 - **Small footprint**: Alerticorn has no dependencies
 - **JUnit Integration**: Automatically send notifications when tests fail using a JUnit extension.
-- **TestNG Integration**: Automatically send notifications when tests fail using TestNG listeners. (soon)
-- **Kotest Integration**: Automatically send notifications when tests fail using Kotest listeners. (soon)
+- **TestNG Integration**: Automatically send notifications when tests fail using TestNG listeners.
+- **Kotest Integration**: Automatically send notifications when tests fail using Kotest extensions.
 
 ## Notification Platform Support
 
@@ -30,8 +30,13 @@ Detailed documentation is available on https://joostvanwollingen.github.io/alert
 ## Test Framework Support
 
 - ✅ JUnit 5
-- 🚧 TestNG
-- 🚧 Kotest
+- ✅ TestNG
+- ✅ Kotest
+
+## Examples
+
+The [`examples/`](examples/) directory contains complete example projects for every combination of build tool,
+test framework, and notifier. See the [examples README](examples/README.md) for details.
 
 # License
 
