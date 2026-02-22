@@ -158,7 +158,7 @@ fun AlerticornMessage.toTeamsWebHookMessage(): TeamsWebHookMessage {
         TeamsWebHookMessage.FactSet(
             listOf(
                 TeamsWebHookMessage.Fact("Exception", it.message ?: ""),
-                TeamsWebHookMessage.Fact("Cause", it.cause.toString()),
+                TeamsWebHookMessage.Fact("Cause", it.cause?.toString() ?: ""),
             )
         )
     }
