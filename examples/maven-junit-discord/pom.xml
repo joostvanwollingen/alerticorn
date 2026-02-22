@@ -12,7 +12,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <alerticorn.version>0.1</alerticorn.version>
+        <alerticorn.version>0.2</alerticorn.version>
     </properties>
 
     <dependencies>

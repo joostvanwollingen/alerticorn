@@ -6,9 +6,9 @@ group = "nl.vanwollingen.alerticorn.examples"
 version = "unspecified"
 
 dependencies {
-    testImplementation("nl.vanwollingen.alerticorn:alerticorn-core:0.1")
-    testImplementation("nl.vanwollingen.alerticorn:alerticorn-slack-notifier:0.1")
-    testImplementation("nl.vanwollingen.alerticorn:alerticorn-junit:0.1")
+    testImplementation("nl.vanwollingen.alerticorn:alerticorn-core:0.2")
+    testImplementation("nl.vanwollingen.alerticorn:alerticorn-slack-notifier:0.2")
+    testImplementation("nl.vanwollingen.alerticorn:alerticorn-junit:0.2")
     testImplementation(kotlin("test"))
 }
 
